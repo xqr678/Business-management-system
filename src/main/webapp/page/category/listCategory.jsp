@@ -21,7 +21,10 @@ pageEncoding="UTF-8" isELIgnored="false"
             <div class="page-header">
                 <h1>
                    分类管理界面 <small>除了crud还有其他功能</small>
+
                 </h1>
+                <span>欢迎你,尊贵的外星人用户:${user.username}</span>
+                <a href="/login" >退出登录</a>
             </div>
             <table class="table">
                 <thead>
