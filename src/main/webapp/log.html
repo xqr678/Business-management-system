@@ -11,19 +11,55 @@
 <div id="checkResult"></div>
 </body>
 <script>
-    $(function (){
-        $('#name').keyup(function (){
-            let page="/checkName";
-            let value=$(this).val();
-            $.get(
-                page,
-                {"name":value},
-                function (result){
-                    $('#checkResult').html(result);
-                }
-            )
-        })
-    })
+    //前端发送请求 后端返回单个数据 由前端接收
+    //jquery 在显示数据方面 表现的非常差 后续jquery会被vue的axios替换掉
+    //
+
+    //ajax最简单的请求提交方式load
+    // $(function (){
+    //     $('#name').keyup(function (){
+    //         let value=$(this).val();
+    //         let page="/checkName?name="+value;
+    //         $('#checkResult').load(page);
+    //         // $('元素具体id').load(page,[data])
+    //         // 具体id代表用来显示ajax接收到的响应内容元素的id
+    //         //page代表的是发送的请求url
+    //         //data表示你在发送请求的时候所提交的参数
+    //         //data是可选项 你可以在load加载的url里面添加参数
+    //         //这里省略了响应函数 默认将后端返回的响应结果
+    //         //直接写入到指定的元素之内
+    //     })
+    // })
+
+    //post方式提交ajax
+    // $(function (){
+    //     $('#name').keyup(function (){
+    //         let page='/checkName';
+    //         let value=$(this).val();
+    //         $post(
+    //             page,
+    //             {"name":value},
+    //             function (result){
+    //                 $('#checkResult').html(result);
+    //             }
+    //         )
+    //     })
+    // })
+
+    //$.get是.$ajax的简化版 专门负责发送get请求
+    // $(function (){
+    //     $('#name').keyup(function (){
+    //         let page="/checkName";
+    //         let value=$(this).val();
+    //         $.get(
+    //             page,
+    //             {"name":value},
+    //             function (result){
+    //                 $('#checkResult').html(result);
+    //             }
+    //         )
+    //     })
+    // })
 
     //jquery提供了4种发送ajax请求的方式
     //$.ajax方式提交

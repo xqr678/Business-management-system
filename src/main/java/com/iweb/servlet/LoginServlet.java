@@ -27,7 +27,6 @@ public class LoginServlet extends HttpServlet {
         user.setUsername(username);
         user.setPassword(password);
         boolean isLogin=new UserDAOImpl().login(user);
-        System.out.println(isLogin);
         if (isLogin){
             HttpSession session=req.getSession();
             session.setAttribute("user",user);

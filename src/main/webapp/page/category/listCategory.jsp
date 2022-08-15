@@ -10,6 +10,7 @@
 pageEncoding="UTF-8" isELIgnored="false"
 %>
 <html>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 <head>
     <title>Title</title>
 </head>
@@ -41,7 +42,8 @@ pageEncoding="UTF-8" isELIgnored="false"
                    <td>${category.id}</td>
                        <td><a href="listProduct?id=${category.id}">${category.name}</a></td>
                        <td><a href="editCategory?id=${category.id}" /><button type="button"  id="edit" class=" btn btn-primary btn-default ">编辑</button> </td>
-                       <td><a href="deleteCategory?id=${category.id}" /><button type="button"  id="delete" class=" btn btn-danger btn-default ">删除</button> </td>
+<%--                       <td><a href="deleteCategory?id=${category.id}" /><button type="button"  id="delete" class=" btn btn-danger btn-default ">删除</button> </td>--%>
+                       <td><button type="button" id="${category.id}" class=" btn delete btn-danger btn-default ">删除</button> </td>
 
                    </tr>
                    </c:forEach>
@@ -59,4 +61,25 @@ pageEncoding="UTF-8" isELIgnored="false"
     </div>
 </div>
 </body>
+<script>
+    $(function (){
+        $('.delete').click(function (){
+            let id=$(this).attr("id");
+            let url="/deleteCategory";
+            let $that=$(this);
+            $.get(
+                url,
+                {"id":id},
+                function (result){
+                    if (result=="success"){
+                        $that.parent().parent().remove();
+                    }else {
+                        alert("删除失败");
+                    }
+                }
+            )
+        })
+    })
+
+</script>
 </html>

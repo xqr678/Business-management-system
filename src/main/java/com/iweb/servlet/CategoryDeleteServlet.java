@@ -25,10 +25,12 @@ public class CategoryDeleteServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         String sid = req.getParameter("id");
         int id=Integer.parseInt(sid);
-        System.out.println(id);
         dao.delete(id);
+//        resp.sendRedirect("/listCategory");
+//        如果dao执行正常，成功的运行到这一行，说明对应的分类信息，已经被删除了，ajax的响应函数
+//        可以后端响应中写入的字符串判断分类是否是删除
 
-        resp.sendRedirect("/listCategory");
+        resp.getWriter().print("success");
 
         }
     }
