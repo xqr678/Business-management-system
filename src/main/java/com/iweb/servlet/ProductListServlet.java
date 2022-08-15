@@ -1,6 +1,8 @@
 package com.iweb.servlet;
 
+import com.iweb.dao.ImgDAO;
 import com.iweb.dao.ProductDAO;
+import com.iweb.dao.impl.ImgDAOImpl;
 import com.iweb.dao.impl.ProductDAOImpl;
 import com.iweb.pojo.Category;
 import com.iweb.pojo.Product;
@@ -27,6 +29,12 @@ public class ProductListServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         int cid=Integer.parseInt(req.getParameter("id"));
         List<Product> products=new ProductDAOImpl().list(cid);
+//        根据pid获取对应的图片集合
+//        将每一个商品所对应的图片集合和商品本身进行绑定
+        ImgDAO imgdao=new ImgDAOImpl();
+        for (Product p:products){
+            p.setImages(imgdao.select(p.getId()));
+        }
         req.setAttribute("products",products);
         req.setAttribute("cid",cid);
         req.getRequestDispatcher("page/product/listProduct.jsp").forward(req,resp);

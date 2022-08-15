@@ -37,13 +37,21 @@ pageEncoding="UTF-8" isELIgnored="false"
         <tbody>
         <c:forEach items="${products}" var="product" varStatus="st">
           <tr>
-            <td>${product.id}</td>
+            <td>
+              <c:if test="${empty product.images}">
+                <img width="100px" height="100px" src="/img/img.jpg" class="img-rounded" />
+            </c:if>
+              <c:if test="${!empty product.images}">
+                <img width="100px" height="100px" src="${product.images.get(0).url}" class="img-rounded" />
+              </c:if>
+            </td>
+
             <td>${product.name}</td>
             <td>${product.price}</td>
             <td>${product.stock}</td>
             <td><a href="editProduct?id=${product.id}" /><button type="button"  id="edit" class=" btn btn-primary btn-default ">编辑</button> </td>
             <td><a href="deleteProduct?id=${product.id}" /><button type="button"  id="delete" class=" btn btn-danger btn-default ">删除</button> </td>
-
+            <td><a href="listImg?id=${product.id}"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a> </td>
           </tr>
         </c:forEach>
         </tbody>
